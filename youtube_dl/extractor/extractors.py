@@ -344,6 +344,11 @@ from .globo import (
     GloboIE,
     GloboArticleIE,
 )
+from .globalnews import (
+    GlobalNewsIE,
+    GlobalNewsPlayerIE,
+    GlobalNewsPlayerFeedIE,
+)
 from .go import GoIE
 from .godtube import GodTubeIE
 from .godtv import GodTVIE
