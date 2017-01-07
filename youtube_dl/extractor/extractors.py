@@ -452,6 +452,7 @@ from .laola1tv import (
     Laola1TvEmbedIE,
     Laola1TvIE,
 )
+from .lapresse import LaPresseIE
 from .lci import LCIIE
 from .lcp import (
     LcpPlayIE,
