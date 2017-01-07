@@ -38,10 +38,7 @@ from .amcnetworks import AMCNetworksIE
 from .animeondemand import AnimeOnDemandIE
 from .anitube import AnitubeIE
 from .anysex import AnySexIE
-from .aol import (
-    AolIE,
-    AolFeaturesIE,
-)
+from .aol import AolIE
 from .allocine import AllocineIE
 from .aparat import AparatIE
 from .appleconnect import AppleConnectIE
@@ -320,7 +317,6 @@ from .francetv import (
 )
 from .freesound import FreesoundIE
 from .freespeech import FreespeechIE
-from .freevideo import FreeVideoIE
 from .funimation import FunimationIE
 from .funnyordie import FunnyOrDieIE
 from .fusion import FusionIE
@@ -661,6 +657,7 @@ from .nrk import (
     NRKSkoleIE,
     NRKTVIE,
     NRKTVDirekteIE,
+    NRKTVEpisodesIE,
 )
 from .ntvde import NTVDeIE
 from .ntvru import NTVRuIE
@@ -818,7 +815,6 @@ from .sbs import SBSIE
 from .scivee import SciVeeIE
 from .screencast import ScreencastIE
 from .screencastomatic import ScreencastOMaticIE
-from .screenjunkies import ScreenJunkiesIE
 from .seeker import SeekerIE
 from .senateisvp import SenateISVPIE
 from .sendtonews import SendtoNewsIE
@@ -829,7 +825,7 @@ from .shared import (
     SharedIE,
     VivoIE,
 )
-from .sharesix import ShareSixIE
+from .showroomlive import ShowRoomLiveIE
 from .sina import SinaIE
 from .sixplay import SixPlayIE
 from .skynewsarabia import (
@@ -1069,6 +1065,7 @@ from .vice import (
 from .viceland import VicelandIE
 from .vidbit import VidbitIE
 from .viddler import ViddlerIE
+from .videa import VideaIE
 from .videodetective import VideoDetectiveIE
 from .videofyme import VideofyMeIE
 from .videomega import VideoMegaIE

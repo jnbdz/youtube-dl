@@ -22,6 +22,7 @@ from ..utils import (
     orderedSet,
     parse_duration,
     parse_iso8601,
+    update_url_query,
     urlencode_postdata,
 )
 
@@ -205,7 +206,14 @@ class TwitchChapterIE(TwitchItemBaseIE):
 
 class TwitchVodIE(TwitchItemBaseIE):
     IE_NAME = 'twitch:vod'
-    _VALID_URL = r'%s/[^/]+/v/(?P<id>\d+)' % TwitchBaseIE._VALID_URL_BASE
+    _VALID_URL = r'''(?x)
+                    https?://
+                        (?:
+                            (?:www\.)?twitch\.tv/[^/]+/v/|
+                            player\.twitch\.tv/\?.*?\bvideo=v
+                        )
+                        (?P<id>\d+)
+                    '''
     _ITEM_TYPE = 'vod'
     _ITEM_SHORTCUT = 'v'
 
@@ -215,7 +223,7 @@ class TwitchVodIE(TwitchItemBaseIE):
             'id': 'v6528877',
             'ext': 'mp4',
             'title': 'LCK Summer Split - Week 6 Day 1',
-            'thumbnail': 're:^https?://.*\.jpg$',
+            'thumbnail': r're:^https?://.*\.jpg$',
             'duration': 17208,
             'timestamp': 1435131709,
             'upload_date': '20150624',
@@ -235,7 +243,7 @@ class TwitchVodIE(TwitchItemBaseIE):
             'id': 'v11230755',
             'ext': 'mp4',
             'title': 'Untitled Broadcast',
-            'thumbnail': 're:^https?://.*\.jpg$',
+            'thumbnail': r're:^https?://.*\.jpg$',
             'duration': 1638,
             'timestamp': 1439746708,
             'upload_date': '20150816',
@@ -248,6 +256,9 @@ class TwitchVodIE(TwitchItemBaseIE):
             'skip_download': True,
         },
         'skip': 'HTTP Error 404: Not Found',
+    }, {
+        'url': 'http://player.twitch.tv/?t=5m10s&video=v6528877',
+        'only_matching': True,
     }]
 
     def _real_extract(self, url):
@@ -278,6 +289,18 @@ class TwitchVodIE(TwitchItemBaseIE):
         query = compat_parse_qs(parsed_url.query)
         if 't' in query:
             info['start_time'] = parse_duration(query['t'][0])
+
+        if info.get('timestamp') is not None:
+            info['subtitles'] = {
+                'rechat': [{
+                    'url': update_url_query(
+                        'https://rechat.twitch.tv/rechat-messages', {
+                            'video_id': 'v%s' % item_id,
+                            'start': info['timestamp'],
+                        }),
+                    'ext': 'json',
+                }],
+            }
 
         return info
 
@@ -527,7 +550,7 @@ class TwitchClipsIE(InfoExtractor):
             'id': 'AggressiveCobraPoooound',
             'ext': 'mp4',
             'title': 'EA Play 2016 Live from the Novo Theatre',
-            'thumbnail': 're:^https?://.*\.jpg',
+            'thumbnail': r're:^https?://.*\.jpg',
             'creator': 'EA',
             'uploader': 'stereotype_',
             'uploader_id': 'stereotype_',
