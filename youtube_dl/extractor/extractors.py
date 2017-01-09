@@ -252,6 +252,7 @@ from .dw import (
 from .eagleplatform import EaglePlatformIE
 from .ebaumsworld import EbaumsWorldIE
 from .echomsk import EchoMskIE
+from .egghead import EggheadCourseIE
 from .ehow import EHowIE
 from .eighttracks import EightTracksIE
 from .einthusan import EinthusanIE
@@ -371,6 +372,7 @@ from .hgtv import (
 )
 from .historicfilms import HistoricFilmsIE
 from .hitbox import HitboxIE, HitboxLiveIE
+from .hitrecord import HitRecordIE
 from .hornbunny import HornBunnyIE
 from .hotnewhiphop import HotNewHipHopIE
 from .hotstar import HotStarIE
@@ -1076,7 +1078,6 @@ from .videomore import (
     VideomoreSeasonIE,
 )
 from .videopremium import VideoPremiumIE
-from .videott import VideoTtIE
 from .vidio import VidioIE
 from .vidme import (
     VidmeIE,
